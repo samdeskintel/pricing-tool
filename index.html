@@ -3,127 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Platform Pricing</title>
+<title>samdesk Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --c0:#64748b;--c1:#2563eb;--c2:#ea580c;--c3:#059669;--c4:#7c3aed;
+  --green:#1CB469;--blue:#2273E0;--grey:#8A8E93;--orange:#F2994A;
+  --purple:#9B51E0;--red:#EB5757;--teal:#68BABF;--offwhite:#E0E1E3;
+  --c0:#8A8E93;--c1:#2273E0;--c2:#1CB469;--c3:#F2994A;--c4:#9B51E0;
   --text:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f1f5f9;--white:#fff;
-  --font:system-ui,-apple-system,sans-serif;--r:10px;
+  --r:10px;--font:'Poppins',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
-.hero{background:linear-gradient(135deg,#080e1f 0%,#0f2750 55%,#071122 100%);color:#fff;padding:48px 24px 36px;text-align:center}
-.hero h1{font-size:2rem;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
-.hero .sub{font-size:.95rem;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
-.mode-toggle{display:inline-flex;background:rgba(255,255,255,.1);border-radius:50px;padding:4px;gap:4px}
-.mode-btn{padding:9px 22px;border:none;border-radius:50px;font-size:.875rem;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s}
-.mode-btn.active{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.main{max-width:1260px;margin:0 auto;padding:0 12px 120px}
-.hint{display:none;align-items:center;gap:10px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--r);padding:12px 16px;margin:14px 0 0;font-size:.84rem;color:#1e40af;font-weight:500}
-.hint.show{display:flex}
-.tbl-outer{margin-top:14px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.plans-row{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:220px repeat(5,1fr);background:var(--white);border-bottom:2px solid var(--border);box-shadow:0 4px 12px rgba(0,0,0,.09)}
-.plans-spacer{padding:16px;display:flex;align-items:flex-end}
-.plans-spacer span{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.pcol{padding:12px 8px 14px;text-align:center;border-left:1px solid var(--border);position:relative;transition:background .2s}
-.pbadge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:50px;font-size:.65rem;font-weight:800;letter-spacing:.3px;color:#fff;margin-bottom:4px}
-.pname{font-size:.88rem;font-weight:700;margin-bottom:2px}
-.ptag{font-size:.68rem;color:var(--muted);min-height:14px;margin-bottom:6px}
-.pprice{font-size:1.3rem;font-weight:800;margin-bottom:8px;display:flex;align-items:baseline;justify-content:center;gap:2px}
-.pprice small{font-size:.7rem;font-weight:400;color:var(--muted)}
-.pcta{display:block;width:100%;padding:6px;border-radius:7px;border:2px solid currentColor;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;transition:all .15s}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 
-/* Category headers */
-.cat-hd{display:grid;grid-template-columns:220px 1fr;padding:11px 14px;cursor:pointer;user-select:none;align-items:center;border-top:1px solid var(--border);transition:background .15s}
+/* ── HERO ── */
+.hero{
+  position:relative;overflow:hidden;color:#fff;padding:56px 24px 44px;text-align:center;
+  background:linear-gradient(135deg,#050c1a 0%,#0a1f3d 40%,#0d2a2a 70%,#071022 100%);
+  background-size:400% 400%;
+  animation:gradShift 12s ease infinite;
+}
+@keyframes gradShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(28,180,105,.12) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 30%,rgba(34,115,224,.15) 0%,transparent 55%),
+             radial-gradient(ellipse at 60% 80%,rgba(104,186,191,.08) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* Grid pulse overlay */
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:48px 48px;
+  animation:gridPulse 8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes gridPulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero-inner{position:relative;z-index:1}
+.hero-logo{height:36px;width:auto;margin:0 auto 20px;display:block;filter:invert(1) brightness(2);opacity:.95}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.55);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto;font-weight:400;line-height:1.6}
+.hero-sub strong{color:rgba(255,255,255,.9);font-weight:600}
+.mode-toggle{display:inline-flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:4px;gap:4px;backdrop-filter:blur(8px)}
+.mode-btn{padding:9px 24px;border:none;border-radius:50px;font-size:.82rem;font-weight:700;font-family:var(--font);cursor:pointer;background:transparent;color:rgba(255,255,255,.55);transition:all .25s;letter-spacing:.2px}
+.mode-btn.active{background:#fff;color:#0f172a;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.mode-btn:not(.active):hover{color:rgba(255,255,255,.9);background:rgba(255,255,255,.1)}
+
+/* ── MAIN ── */
+.main{max-width:1280px;margin:0 auto;padding:0 12px 140px}
+.hint{display:none;align-items:center;gap:10px;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border:1px solid #bfdbfe;border-radius:var(--r);padding:13px 16px;margin:16px 0 0;font-size:.84rem;color:#1e40af;font-weight:600}
+.hint.show{display:flex}
+.tbl-outer{margin-top:16px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+
+/* ── STICKY PLANS ROW ── */
+.plans-row{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:220px repeat(5,1fr);background:var(--white);border-bottom:2px solid var(--border);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.plans-spacer{padding:16px 14px;display:flex;align-items:flex-end}
+.plans-spacer span{font-size:.67rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.pcol{padding:14px 8px 14px;text-align:center;border-left:1px solid var(--border);position:relative;transition:background .3s}
+.pcol.best{background:linear-gradient(180deg,rgba(28,180,105,.06) 0%,rgba(28,180,105,.02) 100%);border-top:3px solid var(--green)!important}
+.pop-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:800;letter-spacing:.8px;color:#fff;padding:3px 10px;border-radius:0 0 8px 8px;white-space:nowrap}
+.pbadge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:50px;font-size:.62rem;font-weight:800;letter-spacing:.3px;color:#fff;margin-bottom:5px}
+.pname{font-size:.87rem;font-weight:800;margin-bottom:2px}
+.ptag{font-size:.65rem;color:var(--muted);min-height:14px;margin-bottom:8px;font-weight:500}
+.pprice{font-size:1.3rem;font-weight:900;margin-bottom:10px;display:flex;align-items:baseline;justify-content:center;gap:2px;letter-spacing:-.5px}
+.pprice small{font-size:.68rem;font-weight:400;color:var(--muted);letter-spacing:0}
+.pcta{display:block;width:100%;padding:7px 6px;border-radius:8px;border:2px solid currentColor;font-size:.73rem;font-weight:700;font-family:var(--font);cursor:pointer;background:transparent;transition:all .2s;letter-spacing:.1px}
+.pcol.best .pcta{background:var(--green);border-color:var(--green);color:#fff!important}
+.pcol.best .pcta:hover{background:#17a05e!important;color:#fff!important}
+
+/* ── CAT HEADERS ── */
+.cat-hd{display:grid;grid-template-columns:220px 1fr;padding:11px 14px;cursor:pointer;user-select:none;align-items:center;border-top:1px solid var(--border);transition:background .2s}
 .cat-hd:hover{background:#f8fafc}
 .cat-hd.first{border-top:none}
-.cat-left{display:flex;align-items:center;gap:8px}
-.cat-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.cat-left{display:flex;align-items:center;gap:10px}
+.cat-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;transition:transform .2s}
+.cat-hd:hover .cat-icon{transform:scale(1.1)}
 .cat-title{font-size:.87rem;font-weight:700}
-.cat-desc{font-size:.71rem;color:var(--muted);margin-top:1px}
-.cat-meta{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-right:8px;font-size:.72rem;color:var(--muted)}
-.cat-arr{width:18px;height:18px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.58rem;transition:transform .2s}
+.cat-desc{font-size:.69rem;color:var(--muted);margin-top:1px;font-weight:400}
+.cat-meta{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-right:8px;font-size:.7rem;color:var(--muted)}
+.cat-arr{width:20px;height:20px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:.58rem;transition:transform .25s,background .2s}
 .cat-arr.open{transform:rotate(180deg)}
+.cat-hd:hover .cat-arr{background:#e2e8f0}
 
-/* Feature rows */
-.feat-row{display:grid;grid-template-columns:220px repeat(5,1fr);border-top:1px solid #f1f5f9;transition:background .1s}
-.feat-row:hover{background:#fafbfd}
-.feat-row.sel{background:#eff6ff!important}
+/* ── FEATURE ROWS ── */
+.feat-row{display:grid;grid-template-columns:220px repeat(5,1fr);border-top:1px solid #f1f5f9;transition:background .15s,box-shadow .15s}
+.feat-row:hover{background:#f8fafc;box-shadow:inset 3px 0 0 var(--green)}
+.feat-row.sel{background:#f0fdf4!important;box-shadow:inset 3px 0 0 var(--green)!important}
 .feat-row.bmode{cursor:pointer}
-.flabel{padding:10px 14px;display:flex;align-items:flex-start;gap:8px}
-.fcb{width:16px;height:16px;border:2px solid #cbd5e1;border-radius:4px;flex-shrink:0;margin-top:2px;display:none;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .15s}
+.flabel{padding:11px 14px;display:flex;align-items:flex-start;gap:9px}
+.fcb{width:17px;height:17px;border:2px solid #cbd5e1;border-radius:5px;flex-shrink:0;margin-top:1px;display:none;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .2s;transform:scale(1)}
 .bmode .fcb{display:flex}
-.fcb.on{background:#2563eb;border-color:#2563eb}
-.fname{font-size:.83rem;font-weight:600}
-.fsub{font-size:.71rem;color:var(--muted);line-height:1.3;margin-top:1px}
-.ao-tag{display:inline-block;margin-top:3px;background:#fffbeb;border:1px solid #fde68a;color:#78350f;font-size:.62rem;font-weight:700;padding:1px 5px;border-radius:4px}
-.fcell{padding:10px 6px;text-align:center;border-left:1px solid #f1f5f9;display:flex;align-items:center;justify-content:center}
-.iyes{width:20px;height:20px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900}
-.ino{width:20px;height:20px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900}
-.qpill{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:2px 7px;font-size:.78rem;font-weight:700}
-.ctag{font-size:.72rem;color:#7c3aed;font-weight:700;font-style:italic}
-.ao-pill{background:#fefce8;border:1px solid #fde68a;color:#713f12;border-radius:6px;padding:2px 7px;font-size:.68rem;font-weight:700;white-space:nowrap}
+.fcb.on{background:var(--green);border-color:var(--green);transform:scale(1.1)}
+.fname{font-size:.82rem;font-weight:700}
+.fsub{font-size:.69rem;color:var(--muted);line-height:1.35;margin-top:2px;font-weight:400}
+.ao-tag{display:inline-block;margin-top:4px;background:#fffbeb;border:1px solid #fde68a;color:#78350f;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:4px}
+.fcell{padding:11px 6px;text-align:center;border-left:1px solid #f1f5f9;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.iyes{width:22px;height:22px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;transition:transform .15s}
+.feat-row:hover .iyes{transform:scale(1.15)}
+.ino{width:22px;height:22px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900}
+.qpill{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:2px 8px;font-size:.76rem;font-weight:700}
+.ctag{font-size:.72rem;color:var(--purple);font-weight:700;font-style:italic}
+.ao-pill{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:6px;padding:2px 7px;font-size:.67rem;font-weight:700;white-space:nowrap}
 .na-pill{color:#cbd5e1;font-size:.85rem;font-weight:700}
 
-/* Value tier headers (By Value mode) */
+/* ── VALUE TIER HEADERS ── */
 .tier-hd{display:grid;grid-template-columns:220px 1fr;align-items:center;padding:10px 14px;border-top:2px solid}
-.tier-label{font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
-.tier-hint{font-size:.7rem;color:#94a3b8;text-align:right;padding-right:8px}
+.tier-label{font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.tier-hint{font-size:.69rem;color:#94a3b8;text-align:right;padding-right:8px;font-weight:500}
 
-/* Column highlight */
-[data-rec="0"] .pcol:nth-child(2),[data-rec="0"] .fcell:nth-child(2){background:rgba(100,116,139,.07)!important}
-[data-rec="1"] .pcol:nth-child(3),[data-rec="1"] .fcell:nth-child(3){background:rgba(37,99,235,.07)!important}
-[data-rec="2"] .pcol:nth-child(4),[data-rec="2"] .fcell:nth-child(4){background:rgba(234,88,12,.07)!important}
-[data-rec="3"] .pcol:nth-child(5),[data-rec="3"] .fcell:nth-child(5){background:rgba(5,150,105,.07)!important}
-[data-rec="4"] .pcol:nth-child(6),[data-rec="4"] .fcell:nth-child(6){background:rgba(124,58,237,.07)!important}
+/* ── COLUMN HIGHLIGHT ── */
+[data-rec="0"] .pcol:nth-child(2),[data-rec="0"] .fcell:nth-child(2){background:rgba(138,142,147,.06)!important}
+[data-rec="1"] .pcol:nth-child(3),[data-rec="1"] .fcell:nth-child(3){background:rgba(34,115,224,.06)!important}
+[data-rec="2"] .pcol:nth-child(4),[data-rec="2"] .fcell:nth-child(4){background:rgba(28,180,105,.06)!important}
+[data-rec="3"] .pcol:nth-child(5),[data-rec="3"] .fcell:nth-child(5){background:rgba(242,153,74,.06)!important}
+[data-rec="4"] .pcol:nth-child(6),[data-rec="4"] .fcell:nth-child(6){background:rgba(155,81,224,.06)!important}
 [data-rec="0"] .pcol:nth-child(2){border-top:3px solid var(--c0)!important}
 [data-rec="1"] .pcol:nth-child(3){border-top:3px solid var(--c1)!important}
 [data-rec="2"] .pcol:nth-child(4){border-top:3px solid var(--c2)!important}
 [data-rec="3"] .pcol:nth-child(5){border-top:3px solid var(--c3)!important}
 [data-rec="4"] .pcol:nth-child(6){border-top:3px solid var(--c4)!important}
 
-/* Add-ons */
-.addons{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:20px}
-.ao-head{padding:18px 22px;border-bottom:1px solid var(--border);background:#fafafa}
-.ao-head h2{font-size:1rem;font-weight:800}
-.ao-head p{font-size:.78rem;color:var(--muted);margin-top:3px}
-.ao-cat{padding:9px 22px;background:#f8fafc;border-top:1px solid var(--border);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-.ao-row{display:flex;align-items:center;gap:12px;padding:10px 22px;border-top:1px solid #f1f5f9;cursor:pointer;transition:background .1s}
-.ao-row:hover{background:#fafbfd}
-.aocb{width:16px;height:16px;border:2px solid #cbd5e1;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .15s}
-.aocb.on{background:#2563eb;border-color:#2563eb}
+/* ── ADD-ONS ── */
+.addons{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:24px;box-shadow:0 4px 24px rgba(0,0,0,.05)}
+.ao-head{padding:20px 24px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#fafafa,#f8fafc)}
+.ao-head h2{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:8px}
+.ao-head p{font-size:.77rem;color:var(--muted);margin-top:4px;font-weight:400}
+.ao-cat{padding:9px 24px;background:#f8fafc;border-top:1px solid var(--border);font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}
+.ao-row{display:flex;align-items:center;gap:12px;padding:11px 24px;border-top:1px solid #f1f5f9;cursor:pointer;transition:background .15s,box-shadow .15s}
+.ao-row:hover{background:#f8fafc;box-shadow:inset 3px 0 0 var(--green)}
+.aocb{width:17px;height:17px;border:2px solid #cbd5e1;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .2s}
+.aocb.on{background:var(--green);border-color:var(--green);transform:scale(1.1)}
 .aoinfo{flex:1}
-.aoname{font-size:.83rem;font-weight:600}
-.aonote{font-size:.7rem;color:var(--c3);margin-top:1px}
-.aoprice{font-size:.88rem;font-weight:800;white-space:nowrap;text-align:right}
+.aoname{font-size:.82rem;font-weight:700}
+.aonote{font-size:.69rem;color:var(--green);margin-top:1px;font-weight:500}
+.aoprice{font-size:.87rem;font-weight:800;white-space:nowrap;text-align:right}
+.aoprice small{font-size:.66rem;font-weight:400;color:var(--muted)}
 
-/* Quote bar */
-.qbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--border);box-shadow:0 -6px 24px rgba(0,0,0,.1);z-index:200;transform:translateY(100%);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+/* ── QUOTE BAR ── */
+.qbar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  transform:translateY(100%);
+  transition:transform .4s cubic-bezier(.34,1.3,.64,1);
+}
 .qbar.show{transform:translateY(0)}
-.qbar-inner{max-width:1260px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.qinfo{flex:1;min-width:180px}
-.qplan-tag{display:inline-flex;align-items:center;padding:3px 12px;border-radius:50px;font-size:.76rem;font-weight:800;color:#fff;margin-bottom:4px}
-.qbreak{font-size:.76rem;color:var(--muted)}
-.qtotal{font-size:1.9rem;font-weight:800;white-space:nowrap}
-.qtotal small{font-size:.7rem;font-weight:400;color:var(--muted);display:block}
+.qbar-inner{
+  background:linear-gradient(135deg,#050c1a 0%,#0d1f3c 50%,#0a1a10 100%);
+  border-top:1px solid rgba(28,180,105,.3);
+  box-shadow:0 -8px 40px rgba(0,0,0,.35),0 -1px 0 rgba(28,180,105,.2);
+  padding:0;
+}
+.qbar-content{max-width:1280px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.qbar-left{flex:1;min-width:200px}
+.qplan-tag{display:inline-flex;align-items:center;padding:3px 12px;border-radius:50px;font-size:.73rem;font-weight:800;color:#fff;margin-bottom:5px;letter-spacing:.2px}
+.qbreak{font-size:.74rem;color:rgba(255,255,255,.45);font-weight:400;line-height:1.5}
+.qbreak strong{color:rgba(255,255,255,.7);font-weight:600}
+.qbar-divider{width:1px;height:48px;background:rgba(255,255,255,.1);flex-shrink:0}
+.qtotal-wrap{text-align:right;flex-shrink:0}
+.qtotal{font-size:2.1rem;font-weight:900;color:#fff;white-space:nowrap;letter-spacing:-1px;line-height:1}
+.qtotal-label{font-size:.69rem;font-weight:500;color:rgba(255,255,255,.4);margin-top:3px;letter-spacing:.2px}
 .qbtns{display:flex;gap:8px;flex-shrink:0}
-.btn{padding:9px 18px;border-radius:8px;font-size:.83rem;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .15s}
-.btn-ghost{background:transparent;border-color:var(--border);color:var(--text)}
-.btn-ghost:hover{border-color:#94a3b8}
-.btn-blue{background:#2563eb;color:#fff;border-color:#2563eb}
-.btn-blue:hover{background:#1d4ed8}
-@media(max-width:900px){.plans-row,.feat-row,.tier-hd{grid-template-columns:150px repeat(5,1fr)}.fsub,.cat-desc,.ptag{display:none}.pprice{font-size:1rem}}
-@media(max-width:620px){.plans-row,.feat-row{grid-template-columns:100px repeat(5,1fr)}.pbadge,.pcta{display:none}.pname{font-size:.72rem}}
+.btn{padding:10px 20px;border-radius:9px;font-size:.82rem;font-weight:700;font-family:var(--font);cursor:pointer;border:2px solid transparent;transition:all .2s;letter-spacing:.1px}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.btn-ghost:hover{background:rgba(255,255,255,.14);color:#fff}
+.btn-green{background:var(--green);color:#fff;border-color:var(--green);box-shadow:0 4px 16px rgba(28,180,105,.35)}
+.btn-green:hover{background:#17a05e;box-shadow:0 6px 20px rgba(28,180,105,.5);transform:translateY(-1px)}
+
+/* ── CAT BODY ANIMATION ── */
+.cat-body{overflow:hidden;transition:opacity .2s}
+.cat-body.closing{opacity:0}
+
+@media(max-width:960px){
+  .plans-row,.feat-row,.tier-hd{grid-template-columns:160px repeat(5,1fr)}
+  .fsub,.cat-desc,.ptag{display:none}
+  .pprice{font-size:1.05rem}
+}
+@media(max-width:640px){
+  .plans-row,.feat-row{grid-template-columns:100px repeat(5,1fr)}
+  .pbadge,.pcta{display:none}
+  .pname{font-size:.7rem}
+  .pprice{font-size:.9rem}
+}
 </style>
 </head>
 <body>
+
 <header class="hero">
-  <h1>Intelligence Platform Pricing</h1>
-  <p class="sub">From early risk awareness to fully automated global response orchestration</p>
-  <div class="mode-toggle">
-    <button class="mode-btn active" id="btnCmp" onclick="setMode('compare')">📊 Compare Plans</button>
-    <button class="mode-btn" id="btnVal" onclick="setMode('value')">🏆 By Value</button>
-    <button class="mode-btn" id="btnBld" onclick="setMode('builder')">🛠 Build My Quote</button>
+  <div class="hero-inner">
+    <img src="https://framerusercontent.com/images/mciUWQilKYsIWoZb2U7lFIDPIg.png?width=911&height=186"
+         alt="samdesk" class="hero-logo">
+    <p class="hero-sub">The most complete AI platform to empower teams to <strong>anticipate, detect, analyze and respond</strong> to physical security risk.</p>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btnCmp" onclick="setMode('compare')">📊 Compare Plans</button>
+      <button class="mode-btn" id="btnVal" onclick="setMode('value')">🏆 By Value</button>
+      <button class="mode-btn" id="btnBld" onclick="setMode('builder')">🛠 Build My Quote</button>
+    </div>
   </div>
 </header>
 
@@ -141,89 +219,91 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 
 <div class="qbar" id="qbar">
   <div class="qbar-inner">
-    <div class="qinfo" id="qinfo"></div>
-    <div id="qtotalWrap"></div>
-    <div class="qbtns">
-      <button class="btn btn-ghost" onclick="clearSel()">Clear all</button>
-      <button class="btn btn-blue" onclick="alert('Thank you! Your quote request has been received.')">Request Quote →</button>
+    <div class="qbar-content">
+      <div class="qbar-left" id="qinfo"></div>
+      <div class="qbar-divider" id="qbarDiv" style="display:none"></div>
+      <div class="qtotal-wrap" id="qtotalWrap"></div>
+      <div class="qbtns">
+        <button class="btn btn-ghost" onclick="clearSel()">Clear all</button>
+        <button class="btn btn-green" onclick="alert('Thank you! Your quote request has been received.')">Request Quote →</button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-const C=['#64748b','#2563eb','#ea580c','#059669','#7c3aed'];
+const C=['#8A8E93','#2273E0','#1CB469','#F2994A','#9B51E0'];
 const PLANS=[
-  {n:'Starter Detect', tag:'Early Risk Awareness',      p:50000},
-  {n:'Detect Plus',    tag:'Enhanced Awareness',         p:75000},
-  {n:'Advanced',       tag:'Decision Acceleration',      p:100000},
-  {n:'Enterprise',     tag:'Automatic Resolution',       p:125000},
-  {n:'Global Scale',   tag:'Federated Orchestration',    p:null},
+  {n:'Starter Detect', tag:'Early Risk Awareness',   p:50000},
+  {n:'Detect Plus',    tag:'Enhanced Awareness',      p:75000},
+  {n:'Advanced',       tag:'Decision Acceleration',   p:100000},
+  {n:'Enterprise',     tag:'Automatic Resolution',    p:125000},
+  {n:'Global Scale',   tag:'Federated Orchestration', p:null},
 ];
 const BADGES=['STARTER','PLUS','ADVANCED','ENTERPRISE','GLOBAL'];
+const BEST_PLAN=2; // Advanced = index 2
 
-// CATS — your specified groupings
-// v = [Starter, Plus, Advanced, Enterprise, Global]
-// aoOnly = integration add-on (renders price pill instead of check/x)
 const CATS=[
-  {id:'see', icon:'👁', iconBg:'#eff6ff', iconC:'#2563eb', name:'See It',
-   desc:'Core detection — foundation of every plan',
+  {id:'see',icon:'👁',iconBg:'#eff6ff',iconC:'#2273E0',name:'See It',desc:'Core detection — foundation of every plan',
    features:[
-    {id:'f1',  n:'API-fed compliant data sources', s:'Emergency & safety, Infrastructure, Climate, Health, Geopolitics, Cyber, RTC alerts', v:[1,1,1,1,1], min:0},
-    {id:'f3',  n:'Web & mobile app + notifications', s:'AI summary, email, SMS (iOS & Android), search', v:[1,1,1,1,1], min:0},
-    {id:'f20', n:'Training', s:'Platform onboarding and best-practice workshops', v:[1,1,1,1,1], min:0},
-    {id:'f21', n:'Support', s:'Ongoing technical support', v:[1,1,1,1,1], min:0},
+    {id:'f1', n:'API-fed compliant data sources',     s:'Emergency & safety, Infrastructure, Climate, Health, Geopolitics, Cyber, RTC alerts', v:[1,1,1,1,1], min:0},
+    {id:'f3', n:'Web & mobile app + notifications',   s:'AI summary, email, SMS (iOS & Android), search', v:[1,1,1,1,1], min:0},
+    {id:'f20',n:'Training',                           s:'Platform onboarding and best-practice workshops', v:[1,1,1,1,1], min:0},
+    {id:'f21',n:'Support',                            s:'Ongoing technical support', v:[1,1,1,1,1], min:0},
   ]},
-  {id:'scale', icon:'📡', iconBg:'#fef3c7', iconC:'#d97706', name:'Scale & Risk Surface',
-   desc:'Expand your monitoring footprint and operational depth',
+  {id:'scale',icon:'📡',iconBg:'#fffbeb',iconC:'#d97706',name:'Scale & Risk Surface',desc:'Expand your monitoring footprint and operational depth',
    features:[
-    {id:'f4',  n:'Streams & stream builder', s:'Custom real-time monitoring streams', v:[15,30,50,120,500], min:0},
-    {id:'f5',  n:'Share streams', s:'Collaborate with teammates on monitored streams', v:[0,0,1,1,1], min:2},
-    {id:'f17', n:'Monitored assets', s:'Geocoordinate & proximity-based monitoring locations', v:[50,50,250,500,'Custom'], min:0},
-    {id:'f18', n:'Roots / Polygons', s:'Custom geographic zone monitoring', v:[0,0,0,0,'✱'], min:4, ao:'Custom — Global Scale only'},
-    {id:'f10', n:'Impact agents', s:'Automated AI-driven response agents', v:[0,0,0,1,1], min:3},
-    {id:'f22', n:'Onboarding & configuration', s:'Guided setup and configuration by our team', v:[0,0,1,1,1], min:2},
-    {id:'f23', n:'Dedicated Customer Success Manager', s:'Your dedicated partner for platform success', v:[0,0,0,1,1], min:3},
-    {id:'f24', n:'Concierge-level service', s:'White-glove enterprise service model', v:[0,0,0,0,1], min:4},
+    {id:'f4', n:'Streams & stream builder',           s:'Custom real-time monitoring streams', v:[15,30,50,120,500], min:0},
+    {id:'f5', n:'Share streams',                      s:'Collaborate with teammates on monitored streams', v:[0,0,1,1,1], min:2},
+    {id:'f17',n:'Monitored assets',                   s:'Geocoordinate & proximity-based monitoring locations', v:[50,50,250,500,'Custom'], min:0},
+    {id:'f18',n:'Roots / Polygons',                   s:'Custom geographic zone monitoring', v:[0,0,0,0,'✱'], min:4, ao:'Custom — Global Scale only'},
+    {id:'f10',n:'Impact agents',                      s:'Automated AI-driven response agents', v:[0,0,0,1,1], min:3},
+    {id:'f22',n:'Onboarding & configuration',         s:'Guided setup and configuration by our team', v:[0,0,1,1,1], min:2},
+    {id:'f23',n:'Dedicated Customer Success Manager', s:'Your dedicated partner for platform success', v:[0,0,0,1,1], min:3},
+    {id:'f24',n:'Concierge-level service',            s:'White-glove enterprise service model', v:[0,0,0,0,1], min:4},
   ]},
-  {id:'comms', icon:'📢', iconBg:'#f0fdf4', iconC:'#16a34a', name:'Communications & Workflow',
-   desc:'Coordinate response across your organization',
+  {id:'comms',icon:'📢',iconBg:'#f0fdf4',iconC:'#16a34a',name:'Communications & Workflow',desc:'Coordinate response across your organization',
    features:[
-    {id:'f13', n:'MS Teams / Slack', s:'Push real-time alerts to collaboration tools', v:[0,0,1,1,1], min:2, ao:'$10k/yr add-on on Starter & Plus'},
-    {id:'f14', n:'Mass communication notifications', s:'Broadcast alerts to large employee groups', v:[0,0,0,1,1], min:3},
-    {id:'f15', n:'Contact groups', s:'Organize and manage notification recipient lists', v:[0,0,0,1,1], min:3},
+    {id:'f13',n:'MS Teams / Slack',                   s:'Push real-time alerts to collaboration tools', v:[0,0,1,1,1], min:2, ao:'$10k/yr add-on on Starter & Plus'},
+    {id:'f14',n:'Mass communication notifications',   s:'Broadcast alerts to large employee groups', v:[0,0,0,1,1], min:3},
+    {id:'f15',n:'Contact groups',                     s:'Organize and manage notification recipient lists', v:[0,0,0,1,1], min:3},
   ]},
-  {id:'integrations', icon:'🔌', iconBg:'#fdf4ff', iconC:'#9333ea', name:'Integrations',
-   desc:'Connect to your existing tech stack — add-on priced, compatible with all plans',
+  {id:'integrations',icon:'🔌',iconBg:'#fdf4ff',iconC:'#9B51E0',name:'Integrations',desc:'Connect your existing tech stack — add-on priced, compatible with all plans',
    features:[
-    {id:'i1', n:'samdesk Notify (Slack / Email / Text)', s:'Native alerting via samdesk notification engine', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i1', n:'samdesk Notify (Slack / Email / Text)',    s:'Native alerting via samdesk notification engine', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
     {id:'i2', n:'Travel + Travel Brief + Pre-travel Brief', s:'Travel risk monitoring and destination briefings', v:[0,0,0,1,'✱'], min:3, ao:'Requires Travel integration add-on ($30k/yr)'},
-    {id:'i3', n:'HRIS', s:'HR system sync for people-centric risk monitoring', aoOnly:true, price:null, v:['—','—','ao','ao','ao'], min:2},
-    {id:'i4', n:'APIs', s:'Direct API access for custom integrations', aoOnly:true, price:5000, v:['ao','ao','ao','ao','ao'], min:0},
-    {id:'i5', n:'Webhooks', s:'Event-driven webhook delivery to your systems', aoOnly:true, price:10000, v:['ao','ao','ao','ao','ao'], min:0},
-    {id:'i6', n:'Everbridge VCC', s:'Critical event management platform', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
-    {id:'i7', n:'Ontic', s:'Protective intelligence platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
-    {id:'i8', n:'Genetec', s:'Physical security & video management integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
-    {id:'i9', n:'Resolver', s:'Incident & risk management platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i3', n:'HRIS',                                     s:'HR system sync for people-centric risk monitoring', aoOnly:true, price:null, v:['—','—','ao','ao','ao'], min:2},
+    {id:'i4', n:'APIs',                                     s:'Direct API access for custom integrations', aoOnly:true, price:5000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i5', n:'Webhooks',                                 s:'Event-driven webhook delivery to your systems', aoOnly:true, price:10000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i6', n:'Everbridge VCC',                           s:'Critical event management platform', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i7', n:'Ontic',                                    s:'Protective intelligence platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i8', n:'Genetec',                                  s:'Physical security & video management integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i9', n:'Resolver',                                 s:'Incident & risk management platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
   ]},
-  {id:'understand', icon:'🧠', iconBg:'#fff1f2', iconC:'#e11d48', name:'Understand It',
-   desc:'Turn data into decisions with analytics and AI',
+  {id:'understand',icon:'🧠',iconBg:'#fff1f2',iconC:'#e11d48',name:'Understand It',desc:'Turn data into decisions with analytics and AI',
    features:[
-    {id:'f7', n:'Daily risk reports', s:'Unclassified & stream risk summaries (samdesk)', v:[0,0,1,1,1], min:2},
-    {id:'f6', n:'Advanced search (Analytics v1)', s:'Deep event search across all data sources', v:[0,0,1,1,1], min:2},
-    {id:'f8', n:'Reporting analytics v2', s:'Advanced analytics and custom dashboards', v:[0,0,0,1,1], min:3, ao:'$10k/yr add-on'},
-    {id:'f9', n:'AI summary drilldown', s:'Deep-dive into AI-generated event summaries', v:[0,0,0,1,1], min:3},
+    {id:'f7', n:'Daily risk reports',               s:'Unclassified & stream risk summaries (samdesk)', v:[0,0,1,1,1], min:2},
+    {id:'f6', n:'Advanced search (Analytics v1)',   s:'Deep event search across all data sources', v:[0,0,1,1,1], min:2},
+    {id:'f8', n:'Reporting analytics v2',           s:'Advanced analytics and custom dashboards', v:[0,0,0,1,1], min:3, ao:'$10k/yr add-on'},
+    {id:'f9', n:'AI summary drilldown',             s:'Deep-dive into AI-generated event summaries', v:[0,0,0,1,1], min:3},
   ]},
-  {id:'compliance', icon:'🔐', iconBg:'#f0f9ff', iconC:'#0284c7', name:'Compliance',
-   desc:'Identity, access and seat management',
+  {id:'compliance',icon:'🔐',iconBg:'#f0f9ff',iconC:'#0284c7',name:'Compliance',desc:'Identity, access and seat management',
    features:[
-    {id:'f16', n:'Named users', s:'Seat licenses included in base plan', v:[3,5,10,20,'Custom'], min:0},
-    {id:'f19', n:'Single Sign-On (SSO)', s:'Enterprise identity & access management', v:[0,0,0,0,1], min:4, ao:'$10k/yr add-on on other plans'},
+    {id:'f16',n:'Named users',             s:'Seat licenses included in base plan', v:[3,5,10,20,'Custom'], min:0},
+    {id:'f19',n:'Single Sign-On (SSO)',    s:'Enterprise identity & access management', v:[0,0,0,0,1], min:4, ao:'$10k/yr add-on on other plans'},
   ]},
-  {id:'premdata', icon:'🌑', iconBg:'#1e1b4b', iconC:'#818cf8', name:'Premium Data',
-   desc:'Expanded intelligence from restricted sources',
+  {id:'premdata',icon:'🌑',iconBg:'#1e1b4b',iconC:'#818cf8',name:'Premium Data',desc:'Expanded intelligence from restricted sources',
    features:[
-    {id:'f2', n:'Dark web data', s:'Deep & dark web monitoring', v:[0,0,0,1,1], min:3, ao:'Available as $15k/yr add-on on lower plans'},
+    {id:'f2',n:'Dark web data',s:'Deep & dark web monitoring', v:[0,0,0,1,1], min:3, ao:'Available as $15k/yr add-on on lower plans'},
   ]},
+];
+
+const VALUE_TIERS=[
+  {label:'Global Scale Only',   hint:'Unlocks at Global Scale',              color:'#9B51E0',bg:'#faf5ff',  ids:['f18','f24','f19','i3']},
+  {label:'Enterprise & Above',  hint:'Unlocks at Enterprise',                color:'#F2994A',bg:'#fff7ed',  ids:['f10','f23','f14','f15','f2','i2','f8','f9']},
+  {label:'Advanced & Above',    hint:'Unlocks at Advanced',                  color:'#1CB469',bg:'#f0fdf4',  ids:['f5','f22','f13','f7','f6']},
+  {label:'All Plans — Add-On',  hint:'Available on any plan (add-on priced)',color:'#d97706',bg:'#fffbeb',  ids:['i1','i4','i5','i6','i7','i8','i9']},
+  {label:'Foundation',          hint:'Included on all plans',                color:'#2273E0',bg:'#eff6ff',  ids:['f1','f3','f4','f17','f20','f21','f16']},
 ];
 
 const ADDONS=[
@@ -263,23 +343,7 @@ const ADDONS=[
   ]},
 ];
 
-// Value tier ordering — for "By Value" mode
-// Each tier has a label and the feature IDs in display order
-const VALUE_TIERS=[
-  {label:'Global Scale Only',  hint:'Unlocks at Global Scale',   color:'#7c3aed', bg:'#faf5ff',
-   ids:['f18','f24','f19','i3']},
-  {label:'Enterprise & Above', hint:'Unlocks at Enterprise',      color:'#059669', bg:'#f0fdf4',
-   ids:['f10','f23','f14','f15','f2','i2','f8','f9']},
-  {label:'Advanced & Above',   hint:'Unlocks at Advanced',        color:'#ea580c', bg:'#fff7ed',
-   ids:['f5','f22','f13','f7','f6']},
-  {label:'All Plans — Add-On', hint:'Available on any plan (add-on priced)', color:'#d97706', bg:'#fffbeb',
-   ids:['i1','i4','i5','i6','i7','i8','i9']},
-  {label:'Foundation',         hint:'Included on all plans',      color:'#2563eb', bg:'#eff6ff',
-   ids:['f1','f3','f4','f17','f20','f21','f16']},
-];
-
-let mode='compare';
-let selF=new Set(), selA=new Set();
+let mode='compare', selF=new Set(), selA=new Set();
 let openC=new Set(CATS.map(c=>c.id));
 
 function fmt(n){return n?'$'+n.toLocaleString():'Custom'}
@@ -300,60 +364,50 @@ function getRec(){
 
 function getAOTotal(){
   let t=0;
-  for(const id of selA){
-    for(const c of ADDONS){const a=c.items.find(x=>x.id===id);if(a&&a.p)t+=a.p}
-  }
+  for(const id of selA){for(const c of ADDONS){const a=c.items.find(x=>x.id===id);if(a&&a.p)t+=a.p}}
   return t;
 }
 
-function renderVal(v, f){
-  if(v==='ao'){
-    if(v==='ao'&&f.price===null)return`<span class="ao-pill">Custom</span>`;
-    return f.price?`<span class="ao-pill">+${fmt(f.price)}</span>`:`<span class="ao-pill">Add-on</span>`;
-  }
-  if(v==='—')return`<span class="na-pill">—</span>`;
-  if(v===1||v===true)return`<div class="iyes">✓</div>`;
-  if(v===0||v===false)return`<div class="ino">✕</div>`;
-  if(v==='✱')return`<span class="ctag">Custom</span>`;
-  if(typeof v==='number'||typeof v==='string')return`<span class="qpill">${v}</span>`;
+function renderVal(v,f){
+  if(v==='ao') return f&&f.price?`<span class="ao-pill">+${fmt(f.price)}</span>`:`<span class="ao-pill">Custom</span>`;
+  if(v==='—') return`<span class="na-pill">—</span>`;
+  if(v===1)   return`<div class="iyes">✓</div>`;
+  if(v===0)   return`<div class="ino">✕</div>`;
+  if(v==='✱') return`<span class="ctag">Custom</span>`;
   return`<span class="qpill">${v}</span>`;
 }
 
 function renderPlans(){
   const rec=mode==='builder'?getRec():-1;
-  const row=document.getElementById('plansRow');
   const outer=document.getElementById('tblOuter');
   rec>=0?outer.setAttribute('data-rec',rec):outer.removeAttribute('data-rec');
-  let h=`<div class="plans-spacer"><span>${mode==='value'?'By Value Layer':'Capabilities'}</span></div>`;
+  let h=`<div class="plans-spacer"><span>${mode==='value'?'Value Layer':'Capabilities'}</span></div>`;
   PLANS.forEach((p,i)=>{
-    const c=C[i], isRec=rec===i&&mode==='builder';
-    const pop=mode==='compare'&&i===3;
-    h+=`<div class="pcol" style="${isRec?`border-top:3px solid ${c};background:${c}0d`:''}">
-      ${(isRec||pop)?`<div style="position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:800;letter-spacing:.8px;color:#fff;background:${c};padding:2px 8px;border-radius:0 0 6px 6px">${isRec?'★ BEST FIT':'POPULAR'}</div>`:''}
-      <div class="pbadge" style="background:${c}">${BADGES[i]}</div>
+    const c=C[i], isBest=(mode==='compare'&&i===BEST_PLAN)||(mode==='builder'&&rec===i);
+    const label=mode==='builder'&&rec===i?'★ BEST FIT':i===BEST_PLAN&&mode==='compare'?'★ BEST FIT':'';
+    h+=`<div class="pcol${isBest?' best':''}" style="${!isBest?`border-top:3px solid ${c}`:''}">`
+      +(label?`<div class="pop-badge" style="background:${c}">${label}</div>`:'')
+      +`<div class="pbadge" style="background:${c}">${BADGES[i]}</div>
       <div class="pname">${p.n}</div>
       <div class="ptag">${p.tag}</div>
       <div class="pprice">${p.p?fmt(p.p):'Custom'}${p.p?'<small>&nbsp;/ yr</small>':''}</div>
-      <button class="pcta" style="color:${c};border-color:${c}"
-        onmouseover="this.style.background='${c}';this.style.color='#fff'"
-        onmouseout="this.style.background='transparent';this.style.color='${c}'">
+      <button class="pcta" style="color:${isBest?'#fff':c};border-color:${c};${isBest?'':'background:transparent'}"
+        onmouseover="if(!this.closest('.pcol').classList.contains('best')){this.style.background='${c}';this.style.color='#fff'}"
+        onmouseout="if(!this.closest('.pcol').classList.contains('best')){this.style.background='transparent';this.style.color='${c}'}">
         ${i===4?'Contact Sales':'Get Started'}
-      </button>
-    </div>`;
+      </button></div>`;
   });
-  row.innerHTML=h;
+  document.getElementById('plansRow').innerHTML=h;
 }
 
-function renderFeatureRow(f, bm){
+function featRowHTML(f,bm){
   const sel=selF.has(f.id);
-  let h=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm&&!f.aoOnly?` onclick="toggleF('${f.id}')"`:''}><div class="flabel">
-    <div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>
-    <div>
-      <div class="fname">${f.n}</div>
-      <div class="fsub">${f.s}</div>
-      ${f.ao?`<div class="ao-tag">+ Add-on available</div>`:''}
-      ${f.aoOnly?`<div class="ao-tag">Add-on · ${f.price?fmt(f.price)+'/yr':'Custom pricing'}</div>`:''}
-    </div></div>`;
+  let h=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm&&!f.aoOnly?` onclick="toggleF('${f.id}')"`:''}>`
+    +`<div class="flabel"><div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>`
+    +`<div><div class="fname">${f.n}</div><div class="fsub">${f.s}</div>`
+    +(f.ao?`<div class="ao-tag">+ Add-on available</div>`:'')
+    +(f.aoOnly?`<div class="ao-tag">Add-on · ${f.price?fmt(f.price)+'/yr':'Custom'}</div>`:'')
+    +`</div></div>`;
   f.v.forEach(v=>h+=`<div class="fcell">${renderVal(v,f)}</div>`);
   return h+`</div>`;
 }
@@ -362,52 +416,40 @@ function renderFeatures(){
   const wrap=document.getElementById('tblWrap');
   const bm=mode==='builder';
 
-  // ── BY VALUE MODE ──
   if(mode==='value'){
     const fm=allFeats();
-    let h='';
-    VALUE_TIERS.forEach((tier,ti)=>{
-      h+=`<div class="tier-hd" style="background:${tier.bg};border-color:${tier.color}40">
+    wrap.innerHTML=VALUE_TIERS.map(tier=>`
+      <div class="tier-hd" style="background:${tier.bg};border-color:${tier.color}50">
         <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
         <div class="tier-hint">${tier.hint}</div>
-      </div>`;
-      tier.ids.forEach(id=>{
-        const f=fm.get(id);
-        if(f) h+=renderFeatureRow(f, bm);
-      });
-    });
-    wrap.innerHTML=h;
+      </div>`
+      +tier.ids.map(id=>{const f=fm.get(id);return f?featRowHTML(f,bm):''}).join('')
+    ).join('');
     return;
   }
 
-  // ── COMPARE / BUILDER MODE ──
-  let h='';
-  CATS.forEach((cat,ci)=>{
+  wrap.innerHTML=CATS.map((cat,ci)=>{
     const open=openC.has(cat.id);
-    h+=`<div>
+    return`<div>
       <div class="cat-hd${ci===0?' first':''}" onclick="toggleCat('${cat.id}')">
         <div class="cat-left">
           <div class="cat-icon" style="background:${cat.iconBg};color:${cat.iconC}">${cat.icon}</div>
-          <div>
-            <div class="cat-title">${cat.name}</div>
-            <div class="cat-desc">${cat.desc}</div>
-          </div>
+          <div><div class="cat-title">${cat.name}</div><div class="cat-desc">${cat.desc}</div></div>
         </div>
-        <div class="cat-meta">
-          <span>${cat.features.length} items</span>
-          <div class="cat-arr ${open?'open':''}">▼</div>
+        <div class="cat-meta"><span>${cat.features.length} items</span>
+          <div class="cat-arr${open?' open':''}">▼</div>
         </div>
       </div>
-      <div id="cb_${cat.id}" style="${open?'':'display:none'}">`;
-    cat.features.forEach(f=>h+=renderFeatureRow(f,bm));
-    h+=`</div></div>`;
-  });
-  wrap.innerHTML=h;
+      <div class="cat-body" id="cb_${cat.id}" style="${open?'':'display:none'}">
+        ${cat.features.map(f=>featRowHTML(f,bm)).join('')}
+      </div></div>`;
+  }).join('');
 }
 
 function renderAddons(){
   const wrap=document.getElementById('addons');
-  let h=`<div class="ao-head"><h2>⚙️ Premium Add-Ons</h2><p>Extend any plan. ${mode==='builder'?'Check items to include in your quote.':'Pricing per item per year unless noted.'}</p></div>`;
+  let h=`<div class="ao-head"><h2>⚙️ Premium Add-Ons</h2>
+    <p>${mode==='builder'?'Check items to include in your quote.':'Pricing per item per year unless noted.'}</p></div>`;
   ADDONS.forEach(c=>{
     h+=`<div class="ao-cat">${c.cat}</div>`;
     c.items.forEach(a=>{
@@ -424,56 +466,59 @@ function renderAddons(){
 
 function renderQuoteBar(){
   const bar=document.getElementById('qbar');
+  const div=document.getElementById('qbarDiv');
   if(mode!=='builder'||(selF.size===0&&selA.size===0)){bar.classList.remove('show');return}
   bar.classList.add('show');
-  const rec=getRec();
-  const plan=rec>=0?PLANS[rec]:null;
-  const aoT=getAOTotal();
-  const base=plan?.p||0;
-  const grand=base+aoT;
+  const rec=getRec(), plan=rec>=0?PLANS[rec]:null;
+  const aoT=getAOTotal(), base=plan?.p||0, grand=base+aoT;
   const isCustom=rec===4;
   let ih='';
   if(plan){
     ih+=`<div class="qplan-tag" style="background:${C[rec]}">${plan.n}</div>`;
-    ih+=`<div class="qbreak">${selF.size} feature${selF.size!==1?'s':''} selected`;
+    ih+=`<div class="qbreak"><strong>${selF.size} feature${selF.size!==1?'s':''} selected</strong>`;
     if(selA.size)ih+=` · ${selA.size} add-on${selA.size!==1?'s':''}`;
     if(plan.p){ih+=`<br>Base: ${fmt(plan.p)}`;if(aoT>0)ih+=` + Add-ons: ${fmt(aoT)}`}
     ih+=`</div>`;
   }
   document.getElementById('qinfo').innerHTML=ih;
+  const hasTotal=!isCustom&&grand>0;
+  div.style.display=hasTotal?'':'none';
   document.getElementById('qtotalWrap').innerHTML=isCustom
-    ?`<div class="qtotal">Custom Quote<small>Contact our sales team</small></div>`
-    :(grand?`<div class="qtotal">${fmt(grand)}<small>Estimated annual contract value</small></div>`:'');
+    ?`<div class="qtotal" style="font-size:1.2rem">Custom Quote</div><div class="qtotal-label">Contact our sales team</div>`
+    :(hasTotal?`<div class="qtotal">${fmt(grand)}</div><div class="qtotal-label">Estimated Annual Contract Value</div>`:'');
 }
 
 function renderAll(){renderPlans();renderFeatures();renderAddons();renderQuoteBar()}
 
 function setMode(m){
   mode=m;
-  ['Cmp','Val','Bld'].forEach(k=>{
-    const el=document.getElementById('btn'+k);
-    if(el)el.classList.remove('active');
-  });
-  const map={compare:'Cmp',value:'Val',builder:'Bld'};
-  document.getElementById('btn'+map[m]).classList.add('active');
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  const map={compare:'btnCmp',value:'btnVal',builder:'btnBld'};
+  document.getElementById(map[m]).classList.add('active');
   document.getElementById('hint').classList.toggle('show',m==='builder');
   renderAll();
 }
 
 function toggleCat(id){
-  openC.has(id)?openC.delete(id):openC.add(id);
   const body=document.getElementById(`cb_${id}`);
   const arr=body?.previousElementSibling?.querySelector('.cat-arr');
-  if(body)body.style.display=openC.has(id)?'':'none';
-  if(arr)arr.classList.toggle('open',openC.has(id));
+  if(openC.has(id)){
+    openC.delete(id);
+    body.classList.add('closing');
+    setTimeout(()=>{body.style.display='none';body.classList.remove('closing')},180);
+    arr?.classList.remove('open');
+  } else {
+    openC.add(id);
+    body.style.display='';
+    arr?.classList.add('open');
+  }
 }
 
 function toggleF(id){
   selF.has(id)?selF.delete(id):selF.add(id);
-  const row=document.getElementById(`fr_${id}`);
-  const cb=document.getElementById(`fcb_${id}`);
   const on=selF.has(id);
-  if(row)row.classList.toggle('sel',on);
+  document.getElementById(`fr_${id}`)?.classList.toggle('sel',on);
+  const cb=document.getElementById(`fcb_${id}`);
   if(cb){cb.classList.toggle('on',on);cb.textContent=on?'✓':''}
   renderPlans();renderQuoteBar();
 }
