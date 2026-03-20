@@ -136,6 +136,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
   <p class="sub">From early risk awareness to fully automated global response orchestration</p>
   <div class="mode-toggle">
     <button class="mode-btn active" id="btnCmp" onclick="setMode('compare')">📊 Compare Plans</button>
+    <button class="mode-btn" id="btnVal" onclick="setMode('value')">🏆 By Value</button>
     <button class="mode-btn" id="btnBld" onclick="setMode('builder')">🛠 Build My Quote</button>
   </div>
 </header>
@@ -311,9 +312,53 @@ function renderPlans(){
   wrap.innerHTML=h;
 }
 
+// Value tier labels & colors for the "By Value" view
+const VTIERS=[
+  {min:4,label:'Global Scale Only',color:'#7c3aed',bg:'#f5f3ff'},
+  {min:3,label:'Enterprise & Above',color:'#059669',bg:'#f0fdf4'},
+  {min:2,label:'Advanced & Above',color:'#ea580c',bg:'#fff7ed'},
+  {min:1,label:'Detect Plus & Above',color:'#2563eb',bg:'#eff6ff'},
+  {min:0,label:'All Plans',color:'#64748b',bg:'#f8fafc'},
+];
+
 function renderFeatures(){
   const wrap=document.getElementById('tblWrap');
   const bm=mode==='builder';
+
+  if(mode==='value'){
+    // Flatten all features and sort by min descending, then by a custom weight
+    const WEIGHTS={f10:10,f12:9,f11:8,f18:7,f24:6,f19:5,f23:4,f13:4,f14:4,f15:3,f9:3,f8:3,f22:2,f7:2,f6:2,f5:2,f2:2,f4:1,f1:0,f3:0,f16:0,f17:0,f20:0,f21:0};
+    let all=[];
+    CATS.forEach(cat=>cat.features.forEach(f=>all.push({...f,cat})));
+    all.sort((a,b)=>b.min!==a.min?b.min-a.min:(WEIGHTS[b.id]||0)-(WEIGHTS[a.id]||0));
+
+    let h='';
+    let lastMin=-1;
+    all.forEach(f=>{
+      if(f.min!==lastMin){
+        const tier=VTIERS.find(t=>t.min===f.min)||VTIERS[4];
+        h+=`<div style="display:grid;grid-template-columns:210px 1fr;align-items:center;padding:9px 14px;background:${tier.bg};border-top:2px solid ${tier.color}20">
+          <div style="font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:${tier.color}">${tier.label}</div>
+          <div style="font-size:.7rem;color:#94a3b8;text-align:right;padding-right:8px">← Unlocks at this tier</div>
+        </div>`;
+        lastMin=f.min;
+      }
+      const sel=selF.has(f.id);
+      h+=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm?` onclick="toggleF('${f.id}')"`:''}><div class="flabel">
+        <div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>
+        <div>
+          <div class="fname">${f.n} <span style="font-size:.65rem;color:#94a3b8;font-weight:500">${f.cat.icon} ${f.cat.name}</span></div>
+          <div class="fsub">${f.s}</div>
+          ${f.ao?`<div class="ao-tag">+ Add-on available</div>`:''}
+        </div></div>`;
+      f.v.forEach(v=>h+=`<div class="fcell">${renderVal(v)}</div>`);
+      h+=`</div>`;
+    });
+    wrap.innerHTML=h;
+    return;
+  }
+
+  // Original category view (compare + builder)
   let h='';
   CATS.forEach(cat=>{
     const open=openC.has(cat.id);
@@ -397,6 +442,7 @@ function setMode(m){
   document.getElementById('btnCmp').classList.toggle('active',m==='compare');
   document.getElementById('btnBld').classList.toggle('active',m==='builder');
   document.getElementById('hint').classList.toggle('show',m==='builder');
+  document.getElementById('btnVal').classList.toggle('active',m==='value');
   renderAll();
 }
 
