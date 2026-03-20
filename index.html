@@ -12,68 +12,65 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
-
-/* HERO */
 .hero{background:linear-gradient(135deg,#080e1f 0%,#0f2750 55%,#071122 100%);color:#fff;padding:48px 24px 36px;text-align:center}
 .hero h1{font-size:2rem;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
 .hero .sub{font-size:.95rem;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
 .mode-toggle{display:inline-flex;background:rgba(255,255,255,.1);border-radius:50px;padding:4px;gap:4px}
 .mode-btn{padding:9px 22px;border:none;border-radius:50px;font-size:.875rem;font-weight:600;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s}
 .mode-btn.active{background:#fff;color:#0f172a;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-
-/* MAIN */
 .main{max-width:1260px;margin:0 auto;padding:0 12px 120px}
-
-/* HINT */
 .hint{display:none;align-items:center;gap:10px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--r);padding:12px 16px;margin:14px 0 0;font-size:.84rem;color:#1e40af;font-weight:500}
 .hint.show{display:flex}
-
-/* TABLE WRAPPER */
-.tbl-wrap{margin-top:0;border:1px solid var(--border);border-top:none;background:var(--white);border-radius:0 0 var(--r) var(--r)}
-
-/* STICKY PLANS ROW */
-.plans-row{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:210px repeat(5,1fr);background:var(--white);border-bottom:2px solid var(--border);box-shadow:0 4px 12px rgba(0,0,0,.09)}
+.tbl-outer{margin-top:14px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.plans-row{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:220px repeat(5,1fr);background:var(--white);border-bottom:2px solid var(--border);box-shadow:0 4px 12px rgba(0,0,0,.09)}
 .plans-spacer{padding:16px;display:flex;align-items:flex-end}
 .plans-spacer span{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 .pcol{padding:12px 8px 14px;text-align:center;border-left:1px solid var(--border);position:relative;transition:background .2s}
-.pcol.is-rec{border-top:3px solid currentColor}
-.pop-label{position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:.6rem;font-weight:800;letter-spacing:.8px;color:#fff;padding:2px 8px;border-radius:0 0 6px 6px}
 .pbadge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:50px;font-size:.65rem;font-weight:800;letter-spacing:.3px;color:#fff;margin-bottom:4px}
 .pname{font-size:.88rem;font-weight:700;margin-bottom:2px}
 .ptag{font-size:.68rem;color:var(--muted);min-height:14px;margin-bottom:6px}
-.pprice{font-size:1.35rem;font-weight:800;margin-bottom:8px;display:flex;align-items:baseline;justify-content:center;gap:2px}
+.pprice{font-size:1.3rem;font-weight:800;margin-bottom:8px;display:flex;align-items:baseline;justify-content:center;gap:2px}
 .pprice small{font-size:.7rem;font-weight:400;color:var(--muted)}
-.pcta{display:block;width:100%;padding:6px 6px;border-radius:7px;border:2px solid currentColor;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;transition:all .15s}
+.pcta{display:block;width:100%;padding:6px;border-radius:7px;border:2px solid currentColor;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;transition:all .15s}
 
-/* CAT */
-.cat-hd{display:grid;grid-template-columns:210px 1fr;padding:12px 14px;background:#f8fafc;border-top:2px solid var(--border);cursor:pointer;user-select:none;align-items:center;gap:8px;transition:background .15s}
-.cat-hd:hover{background:#f1f5f9}
-.cat-hd:first-child{border-top:none}
-.cat-title{font-size:.87rem;font-weight:700;display:flex;align-items:center;gap:5px}
+/* Category headers */
+.cat-hd{display:grid;grid-template-columns:220px 1fr;padding:11px 14px;cursor:pointer;user-select:none;align-items:center;border-top:1px solid var(--border);transition:background .15s}
+.cat-hd:hover{background:#f8fafc}
+.cat-hd.first{border-top:none}
+.cat-left{display:flex;align-items:center;gap:8px}
+.cat-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.cat-title{font-size:.87rem;font-weight:700}
 .cat-desc{font-size:.71rem;color:var(--muted);margin-top:1px}
-.cat-right{display:flex;align-items:center;justify-content:flex-end;gap:6px;font-size:.72rem;color:var(--muted)}
-.cat-arr{width:18px;height:18px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:transform .2s}
+.cat-meta{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-right:8px;font-size:.72rem;color:var(--muted)}
+.cat-arr{width:18px;height:18px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:.58rem;transition:transform .2s}
 .cat-arr.open{transform:rotate(180deg)}
 
-/* FEAT ROW */
-.feat-row{display:grid;grid-template-columns:210px repeat(5,1fr);border-top:1px solid #f1f5f9;transition:background .1s}
+/* Feature rows */
+.feat-row{display:grid;grid-template-columns:220px repeat(5,1fr);border-top:1px solid #f1f5f9;transition:background .1s}
 .feat-row:hover{background:#fafbfd}
 .feat-row.sel{background:#eff6ff!important}
 .feat-row.bmode{cursor:pointer}
-.flabel{padding:11px 14px;display:flex;align-items:flex-start;gap:8px}
+.flabel{padding:10px 14px;display:flex;align-items:flex-start;gap:8px}
 .fcb{width:16px;height:16px;border:2px solid #cbd5e1;border-radius:4px;flex-shrink:0;margin-top:2px;display:none;align-items:center;justify-content:center;font-size:.65rem;color:#fff;transition:all .15s}
 .bmode .fcb{display:flex}
 .fcb.on{background:#2563eb;border-color:#2563eb}
 .fname{font-size:.83rem;font-weight:600}
 .fsub{font-size:.71rem;color:var(--muted);line-height:1.3;margin-top:1px}
 .ao-tag{display:inline-block;margin-top:3px;background:#fffbeb;border:1px solid #fde68a;color:#78350f;font-size:.62rem;font-weight:700;padding:1px 5px;border-radius:4px}
-.fcell{padding:11px 6px;text-align:center;border-left:1px solid #f1f5f9;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.fcell{padding:10px 6px;text-align:center;border-left:1px solid #f1f5f9;display:flex;align-items:center;justify-content:center}
 .iyes{width:20px;height:20px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900}
 .ino{width:20px;height:20px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900}
 .qpill{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:6px;padding:2px 7px;font-size:.78rem;font-weight:700}
 .ctag{font-size:.72rem;color:#7c3aed;font-weight:700;font-style:italic}
+.ao-pill{background:#fefce8;border:1px solid #fde68a;color:#713f12;border-radius:6px;padding:2px 7px;font-size:.68rem;font-weight:700;white-space:nowrap}
+.na-pill{color:#cbd5e1;font-size:.85rem;font-weight:700}
 
-/* COLUMN HIGHLIGHT */
+/* Value tier headers (By Value mode) */
+.tier-hd{display:grid;grid-template-columns:220px 1fr;align-items:center;padding:10px 14px;border-top:2px solid}
+.tier-label{font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.tier-hint{font-size:.7rem;color:#94a3b8;text-align:right;padding-right:8px}
+
+/* Column highlight */
 [data-rec="0"] .pcol:nth-child(2),[data-rec="0"] .fcell:nth-child(2){background:rgba(100,116,139,.07)!important}
 [data-rec="1"] .pcol:nth-child(3),[data-rec="1"] .fcell:nth-child(3){background:rgba(37,99,235,.07)!important}
 [data-rec="2"] .pcol:nth-child(4),[data-rec="2"] .fcell:nth-child(4){background:rgba(234,88,12,.07)!important}
@@ -85,7 +82,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 [data-rec="3"] .pcol:nth-child(5){border-top:3px solid var(--c3)!important}
 [data-rec="4"] .pcol:nth-child(6){border-top:3px solid var(--c4)!important}
 
-/* ADD-ONS */
+/* Add-ons */
 .addons{background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:20px}
 .ao-head{padding:18px 22px;border-bottom:1px solid var(--border);background:#fafafa}
 .ao-head h2{font-size:1rem;font-weight:800}
@@ -99,9 +96,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .aoname{font-size:.83rem;font-weight:600}
 .aonote{font-size:.7rem;color:var(--c3);margin-top:1px}
 .aoprice{font-size:.88rem;font-weight:800;white-space:nowrap;text-align:right}
-.aoprice small{font-size:.68rem;font-weight:400;color:var(--muted)}
 
-/* QUOTE BAR */
+/* Quote bar */
 .qbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--border);box-shadow:0 -6px 24px rgba(0,0,0,.1);z-index:200;transform:translateY(100%);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .qbar.show{transform:translateY(0)}
 .qbar-inner{max-width:1260px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
@@ -116,18 +112,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .btn-ghost:hover{border-color:#94a3b8}
 .btn-blue{background:#2563eb;color:#fff;border-color:#2563eb}
 .btn-blue:hover{background:#1d4ed8}
-
-/* RESP */
-@media(max-width:900px){
-  .plans-row,.feat-row{grid-template-columns:150px repeat(5,1fr)}
-  .fsub,.cat-desc,.ptag{display:none}
-  .pprice{font-size:1rem}
-}
-@media(max-width:620px){
-  .plans-row,.feat-row{grid-template-columns:110px repeat(5,1fr)}
-  .pbadge,.pcta{display:none}
-  .pname{font-size:.72rem}
-}
+@media(max-width:900px){.plans-row,.feat-row,.tier-hd{grid-template-columns:150px repeat(5,1fr)}.fsub,.cat-desc,.ptag{display:none}.pprice{font-size:1rem}}
+@media(max-width:620px){.plans-row,.feat-row{grid-template-columns:100px repeat(5,1fr)}.pbadge,.pcta{display:none}.pname{font-size:.72rem}}
 </style>
 </head>
 <body>
@@ -144,14 +130,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 <div class="main">
   <div class="hint" id="hint">
     <span>💡</span>
-    <span><strong>Select the capabilities you need</strong> — we'll identify your minimum plan and calculate an estimated ACV. Add optional integrations and add-ons below.</span>
+    <span><strong>Select the capabilities you need</strong> — we'll identify your minimum plan and calculate an estimated ACV.</span>
   </div>
-
-  <div style="margin-top:0;border:1px solid var(--border);border-radius:var(--r) var(--r) 0 0;overflow:hidden;margin-top:14px">
+  <div class="tbl-outer" id="tblOuter">
     <div class="plans-row" id="plansRow"></div>
+    <div id="tblWrap"></div>
   </div>
-  <div class="tbl-wrap" id="tblWrap"></div>
-
   <div class="addons" id="addons"></div>
 </div>
 
@@ -169,48 +153,76 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 <script>
 const C=['#64748b','#2563eb','#ea580c','#059669','#7c3aed'];
 const PLANS=[
-  {n:'Starter Detect',tag:'Early Risk Awareness',p:50000},
-  {n:'Detect Plus',tag:'Enhanced Awareness',p:75000},
-  {n:'Advanced',tag:'Decision Acceleration',p:100000},
-  {n:'Enterprise',tag:'Automatic Resolution',p:125000},
-  {n:'Global Scale',tag:'Federated Orchestration',p:null},
+  {n:'Starter Detect', tag:'Early Risk Awareness',      p:50000},
+  {n:'Detect Plus',    tag:'Enhanced Awareness',         p:75000},
+  {n:'Advanced',       tag:'Decision Acceleration',      p:100000},
+  {n:'Enterprise',     tag:'Automatic Resolution',       p:125000},
+  {n:'Global Scale',   tag:'Federated Orchestration',    p:null},
 ];
 const BADGES=['STARTER','PLUS','ADVANCED','ENTERPRISE','GLOBAL'];
 
+// CATS — your specified groupings
+// v = [Starter, Plus, Advanced, Enterprise, Global]
+// aoOnly = integration add-on (renders price pill instead of check/x)
 const CATS=[
-  {id:'see',icon:'👁',name:'See It',desc:'Data & Detection — real-time global threat intelligence',features:[
-    {id:'f1',n:'API-fed compliant data sources',s:'Emergency & safety, Infrastructure, Climate, Health, Geopolitics, Cyber, RTC alerts',v:[1,1,1,1,1],min:0},
-    {id:'f2',n:'Dark web data',s:'Deep & dark web monitoring',v:[0,0,0,1,1],min:3,ao:'Available as $15k/yr add-on on lower plans'},
-    {id:'f3',n:'Web & mobile app + notifications',s:'AI summary, email, SMS (iOS & Android), search',v:[1,1,1,1,1],min:0},
-    {id:'f4',n:'Streams & stream builder',s:'Custom real-time monitoring streams',v:[15,30,50,120,500],min:0},
+  {id:'see', icon:'👁', iconBg:'#eff6ff', iconC:'#2563eb', name:'See It',
+   desc:'Core detection — foundation of every plan',
+   features:[
+    {id:'f1',  n:'API-fed compliant data sources', s:'Emergency & safety, Infrastructure, Climate, Health, Geopolitics, Cyber, RTC alerts', v:[1,1,1,1,1], min:0},
+    {id:'f3',  n:'Web & mobile app + notifications', s:'AI summary, email, SMS (iOS & Android), search', v:[1,1,1,1,1], min:0},
+    {id:'f20', n:'Training', s:'Platform onboarding and best-practice workshops', v:[1,1,1,1,1], min:0},
+    {id:'f21', n:'Support', s:'Ongoing technical support', v:[1,1,1,1,1], min:0},
   ]},
-  {id:'understand',icon:'🧠',name:'Understand It',desc:'Decision Acceleration — share intelligence and act faster',features:[
-    {id:'f5',n:'Share streams',s:'Collaborate with teammates on monitored streams',v:[0,0,1,1,1],min:2},
-    {id:'f6',n:'Advanced search (Samdesk Analytics v1)',s:'Deep event search across all data sources',v:[0,0,1,1,1],min:2},
-    {id:'f7',n:'Daily risk reports',s:'Unclassified & stream risk summaries (samdesk)',v:[0,0,1,1,1],min:2},
-    {id:'f8',n:'Reporting analytics v2',s:'Advanced analytics and custom dashboards',v:[0,0,0,1,1],min:3,ao:'$10,000/yr add-on'},
-    {id:'f9',n:'AI summary drilldown',s:'Deep-dive into AI-generated event summaries',v:[0,0,0,1,1],min:3},
+  {id:'scale', icon:'📡', iconBg:'#fef3c7', iconC:'#d97706', name:'Scale & Risk Surface',
+   desc:'Expand your monitoring footprint and operational depth',
+   features:[
+    {id:'f4',  n:'Streams & stream builder', s:'Custom real-time monitoring streams', v:[15,30,50,120,500], min:0},
+    {id:'f5',  n:'Share streams', s:'Collaborate with teammates on monitored streams', v:[0,0,1,1,1], min:2},
+    {id:'f17', n:'Monitored assets', s:'Geocoordinate & proximity-based monitoring locations', v:[50,50,250,500,'Custom'], min:0},
+    {id:'f18', n:'Roots / Polygons', s:'Custom geographic zone monitoring', v:[0,0,0,0,'✱'], min:4, ao:'Custom — Global Scale only'},
+    {id:'f10', n:'Impact agents', s:'Automated AI-driven response agents', v:[0,0,0,1,1], min:3},
+    {id:'f22', n:'Onboarding & configuration', s:'Guided setup and configuration by our team', v:[0,0,1,1,1], min:2},
+    {id:'f23', n:'Dedicated Customer Success Manager', s:'Your dedicated partner for platform success', v:[0,0,0,1,1], min:3},
+    {id:'f24', n:'Concierge-level service', s:'White-glove enterprise service model', v:[0,0,0,0,1], min:4},
   ]},
-  {id:'act',icon:'⚡',name:'Act On It',desc:'Resolution & Response — automate and coordinate action at speed',features:[
-    {id:'f10',n:'Impact agents',s:'Automated AI-driven response agents',v:[0,0,0,1,1],min:3},
-    {id:'f11',n:'Pre-travel brief',s:'Destination risk briefing (requires travel integration)',v:[0,0,0,1,'✱'],min:3,ao:'Travel integration required'},
-    {id:'f12',n:'Travel brief',s:'Live travel monitoring (requires travel integration)',v:[0,0,0,1,'✱'],min:3,ao:'Travel integration required'},
-    {id:'f13',n:'Slack / MS Teams integration',s:'Push real-time alerts to collaboration tools',v:[0,0,1,1,1],min:2,ao:'$10,000/yr on Starter & Plus'},
-    {id:'f14',n:'Mass communication notifications',s:'Broadcast alerts to large employee groups',v:[0,0,0,1,1],min:3},
-    {id:'f15',n:'Contact groups',s:'Organize and manage notification recipient lists',v:[0,0,0,1,1],min:3},
+  {id:'comms', icon:'📢', iconBg:'#f0fdf4', iconC:'#16a34a', name:'Communications & Workflow',
+   desc:'Coordinate response across your organization',
+   features:[
+    {id:'f13', n:'MS Teams / Slack', s:'Push real-time alerts to collaboration tools', v:[0,0,1,1,1], min:2, ao:'$10k/yr add-on on Starter & Plus'},
+    {id:'f14', n:'Mass communication notifications', s:'Broadcast alerts to large employee groups', v:[0,0,0,1,1], min:3},
+    {id:'f15', n:'Contact groups', s:'Organize and manage notification recipient lists', v:[0,0,0,1,1], min:3},
   ]},
-  {id:'scale',icon:'🌐',name:'Scale It',desc:'Infrastructure & Footprint — expand your operational capacity',features:[
-    {id:'f16',n:'Named users',s:'Seat licenses included in base plan',v:[3,5,10,20,'Custom'],min:0},
-    {id:'f17',n:'Monitored assets',s:'Geocoordinate & proximity-based monitoring locations',v:[50,50,250,500,'Custom'],min:0},
-    {id:'f18',n:'Roots / Polygons',s:'Custom geographic zone monitoring',v:[0,0,0,0,'✱'],min:4,ao:'Custom pricing — Global only'},
-    {id:'f19',n:'Single Sign-On (SSO)',s:'Enterprise identity & access management',v:[0,0,0,0,1],min:4,ao:'$10,000/yr add-on on other plans'},
+  {id:'integrations', icon:'🔌', iconBg:'#fdf4ff', iconC:'#9333ea', name:'Integrations',
+   desc:'Connect to your existing tech stack — add-on priced, compatible with all plans',
+   features:[
+    {id:'i1', n:'samdesk Notify (Slack / Email / Text)', s:'Native alerting via samdesk notification engine', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i2', n:'Travel + Travel Brief + Pre-travel Brief', s:'Travel risk monitoring and destination briefings', v:[0,0,0,1,'✱'], min:3, ao:'Requires Travel integration add-on ($30k/yr)'},
+    {id:'i3', n:'HRIS', s:'HR system sync for people-centric risk monitoring', aoOnly:true, price:null, v:['—','—','ao','ao','ao'], min:2},
+    {id:'i4', n:'APIs', s:'Direct API access for custom integrations', aoOnly:true, price:5000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i5', n:'Webhooks', s:'Event-driven webhook delivery to your systems', aoOnly:true, price:10000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i6', n:'Everbridge VCC', s:'Critical event management platform', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i7', n:'Ontic', s:'Protective intelligence platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i8', n:'Genetec', s:'Physical security & video management integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
+    {id:'i9', n:'Resolver', s:'Incident & risk management platform integration', aoOnly:true, price:30000, v:['ao','ao','ao','ao','ao'], min:0},
   ]},
-  {id:'support',icon:'🤝',name:'Supported',desc:'Strategic Partnership — expert guidance and white-glove service',features:[
-    {id:'f20',n:'Training',s:'Platform onboarding and best-practice workshops',v:[1,1,1,1,1],min:0},
-    {id:'f21',n:'Support',s:'Ongoing technical support',v:[1,1,1,1,1],min:0},
-    {id:'f22',n:'Onboarding & configuration',s:'Guided setup and configuration by our team',v:[0,0,1,1,1],min:2},
-    {id:'f23',n:'Dedicated Customer Success Manager',s:'Your dedicated partner for platform success',v:[0,0,0,1,1],min:3},
-    {id:'f24',n:'Concierge-level service',s:'White-glove enterprise service model',v:[0,0,0,0,1],min:4},
+  {id:'understand', icon:'🧠', iconBg:'#fff1f2', iconC:'#e11d48', name:'Understand It',
+   desc:'Turn data into decisions with analytics and AI',
+   features:[
+    {id:'f7', n:'Daily risk reports', s:'Unclassified & stream risk summaries (samdesk)', v:[0,0,1,1,1], min:2},
+    {id:'f6', n:'Advanced search (Analytics v1)', s:'Deep event search across all data sources', v:[0,0,1,1,1], min:2},
+    {id:'f8', n:'Reporting analytics v2', s:'Advanced analytics and custom dashboards', v:[0,0,0,1,1], min:3, ao:'$10k/yr add-on'},
+    {id:'f9', n:'AI summary drilldown', s:'Deep-dive into AI-generated event summaries', v:[0,0,0,1,1], min:3},
+  ]},
+  {id:'compliance', icon:'🔐', iconBg:'#f0f9ff', iconC:'#0284c7', name:'Compliance',
+   desc:'Identity, access and seat management',
+   features:[
+    {id:'f16', n:'Named users', s:'Seat licenses included in base plan', v:[3,5,10,20,'Custom'], min:0},
+    {id:'f19', n:'Single Sign-On (SSO)', s:'Enterprise identity & access management', v:[0,0,0,0,1], min:4, ao:'$10k/yr add-on on other plans'},
+  ]},
+  {id:'premdata', icon:'🌑', iconBg:'#1e1b4b', iconC:'#818cf8', name:'Premium Data',
+   desc:'Expanded intelligence from restricted sources',
+   features:[
+    {id:'f2', n:'Dark web data', s:'Deep & dark web monitoring', v:[0,0,0,1,1], min:3, ao:'Available as $15k/yr add-on on lower plans'},
   ]},
 ];
 
@@ -251,21 +263,39 @@ const ADDONS=[
   ]},
 ];
 
-// STATE
+// Value tier ordering — for "By Value" mode
+// Each tier has a label and the feature IDs in display order
+const VALUE_TIERS=[
+  {label:'Global Scale Only',  hint:'Unlocks at Global Scale',   color:'#7c3aed', bg:'#faf5ff',
+   ids:['f18','f24','f19','i3']},
+  {label:'Enterprise & Above', hint:'Unlocks at Enterprise',      color:'#059669', bg:'#f0fdf4',
+   ids:['f10','f23','f14','f15','f2','i2','f8','f9']},
+  {label:'Advanced & Above',   hint:'Unlocks at Advanced',        color:'#ea580c', bg:'#fff7ed',
+   ids:['f5','f22','f13','f7','f6']},
+  {label:'All Plans — Add-On', hint:'Available on any plan (add-on priced)', color:'#d97706', bg:'#fffbeb',
+   ids:['i1','i4','i5','i6','i7','i8','i9']},
+  {label:'Foundation',         hint:'Included on all plans',      color:'#2563eb', bg:'#eff6ff',
+   ids:['f1','f3','f4','f17','f20','f21','f16']},
+];
+
 let mode='compare';
-let selF=new Set();
-let selA=new Set();
-let openC=new Set(['see','understand','act','scale','support']);
+let selF=new Set(), selA=new Set();
+let openC=new Set(CATS.map(c=>c.id));
 
 function fmt(n){return n?'$'+n.toLocaleString():'Custom'}
 
+function allFeats(){
+  const m=new Map();
+  CATS.forEach(c=>c.features.forEach(f=>m.set(f.id,f)));
+  return m;
+}
+
 function getRec(){
   if(!selF.size&&!selA.size)return -1;
-  let m=0;
-  for(const id of selF){
-    for(const c of CATS){const f=c.features.find(x=>x.id===id);if(f)m=Math.max(m,f.min)}
-  }
-  return m;
+  let mn=0;
+  const fm=allFeats();
+  for(const id of selF){const f=fm.get(id);if(f)mn=Math.max(mn,f.min)}
+  return mn;
 }
 
 function getAOTotal(){
@@ -276,28 +306,30 @@ function getAOTotal(){
   return t;
 }
 
-function renderVal(v){
+function renderVal(v, f){
+  if(v==='ao'){
+    if(v==='ao'&&f.price===null)return`<span class="ao-pill">Custom</span>`;
+    return f.price?`<span class="ao-pill">+${fmt(f.price)}</span>`:`<span class="ao-pill">Add-on</span>`;
+  }
+  if(v==='—')return`<span class="na-pill">—</span>`;
   if(v===1||v===true)return`<div class="iyes">✓</div>`;
   if(v===0||v===false)return`<div class="ino">✕</div>`;
   if(v==='✱')return`<span class="ctag">Custom</span>`;
-  if(typeof v==='number')return`<span class="qpill">${v}</span>`;
+  if(typeof v==='number'||typeof v==='string')return`<span class="qpill">${v}</span>`;
   return`<span class="qpill">${v}</span>`;
 }
 
 function renderPlans(){
   const rec=mode==='builder'?getRec():-1;
-  const wrap=document.getElementById('plansRow');
-  const tbl=document.getElementById('tblWrap');
-  if(rec>=0){wrap.setAttribute('data-rec',rec);tbl.setAttribute('data-rec',rec)}
-  else{wrap.removeAttribute('data-rec');tbl.removeAttribute('data-rec')}
-
-  let h=`<div class="plans-spacer"><span>Capabilities</span></div>`;
+  const row=document.getElementById('plansRow');
+  const outer=document.getElementById('tblOuter');
+  rec>=0?outer.setAttribute('data-rec',rec):outer.removeAttribute('data-rec');
+  let h=`<div class="plans-spacer"><span>${mode==='value'?'By Value Layer':'Capabilities'}</span></div>`;
   PLANS.forEach((p,i)=>{
-    const c=C[i];
-    const isRec=(rec===i)&&mode==='builder';
-    const isPopular=(mode==='compare'&&i===3)||(mode==='builder'&&isRec);
-    h+=`<div class="pcol" style="${isRec?`border-top:3px solid ${c};`:''}">
-      ${isPopular?`<div class="pop-label" style="background:${c}">${isRec?'★ BEST FIT':'POPULAR'}</div>`:''}
+    const c=C[i], isRec=rec===i&&mode==='builder';
+    const pop=mode==='compare'&&i===3;
+    h+=`<div class="pcol" style="${isRec?`border-top:3px solid ${c};background:${c}0d`:''}">
+      ${(isRec||pop)?`<div style="position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:.58rem;font-weight:800;letter-spacing:.8px;color:#fff;background:${c};padding:2px 8px;border-radius:0 0 6px 6px">${isRec?'★ BEST FIT':'POPULAR'}</div>`:''}
       <div class="pbadge" style="background:${c}">${BADGES[i]}</div>
       <div class="pname">${p.n}</div>
       <div class="ptag">${p.tag}</div>
@@ -309,83 +341,65 @@ function renderPlans(){
       </button>
     </div>`;
   });
-  wrap.innerHTML=h;
+  row.innerHTML=h;
 }
 
-// Value tier labels & colors for the "By Value" view
-const VTIERS=[
-  {min:4,label:'Global Scale Only',color:'#7c3aed',bg:'#f5f3ff'},
-  {min:3,label:'Enterprise & Above',color:'#059669',bg:'#f0fdf4'},
-  {min:2,label:'Advanced & Above',color:'#ea580c',bg:'#fff7ed'},
-  {min:1,label:'Detect Plus & Above',color:'#2563eb',bg:'#eff6ff'},
-  {min:0,label:'All Plans',color:'#64748b',bg:'#f8fafc'},
-];
+function renderFeatureRow(f, bm){
+  const sel=selF.has(f.id);
+  let h=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm&&!f.aoOnly?` onclick="toggleF('${f.id}')"`:''}><div class="flabel">
+    <div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>
+    <div>
+      <div class="fname">${f.n}</div>
+      <div class="fsub">${f.s}</div>
+      ${f.ao?`<div class="ao-tag">+ Add-on available</div>`:''}
+      ${f.aoOnly?`<div class="ao-tag">Add-on · ${f.price?fmt(f.price)+'/yr':'Custom pricing'}</div>`:''}
+    </div></div>`;
+  f.v.forEach(v=>h+=`<div class="fcell">${renderVal(v,f)}</div>`);
+  return h+`</div>`;
+}
 
 function renderFeatures(){
   const wrap=document.getElementById('tblWrap');
   const bm=mode==='builder';
 
+  // ── BY VALUE MODE ──
   if(mode==='value'){
-    // Flatten all features and sort by min descending, then by a custom weight
-    const WEIGHTS={f10:10,f12:9,f11:8,f18:7,f24:6,f19:5,f23:4,f13:4,f14:4,f15:3,f9:3,f8:3,f22:2,f7:2,f6:2,f5:2,f2:2,f4:1,f1:0,f3:0,f16:0,f17:0,f20:0,f21:0};
-    let all=[];
-    CATS.forEach(cat=>cat.features.forEach(f=>all.push({...f,cat})));
-    all.sort((a,b)=>b.min!==a.min?b.min-a.min:(WEIGHTS[b.id]||0)-(WEIGHTS[a.id]||0));
-
+    const fm=allFeats();
     let h='';
-    let lastMin=-1;
-    all.forEach(f=>{
-      if(f.min!==lastMin){
-        const tier=VTIERS.find(t=>t.min===f.min)||VTIERS[4];
-        h+=`<div style="display:grid;grid-template-columns:210px 1fr;align-items:center;padding:9px 14px;background:${tier.bg};border-top:2px solid ${tier.color}20">
-          <div style="font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:${tier.color}">${tier.label}</div>
-          <div style="font-size:.7rem;color:#94a3b8;text-align:right;padding-right:8px">← Unlocks at this tier</div>
-        </div>`;
-        lastMin=f.min;
-      }
-      const sel=selF.has(f.id);
-      h+=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm?` onclick="toggleF('${f.id}')"`:''}><div class="flabel">
-        <div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>
-        <div>
-          <div class="fname">${f.n} <span style="font-size:.65rem;color:#94a3b8;font-weight:500">${f.cat.icon} ${f.cat.name}</span></div>
-          <div class="fsub">${f.s}</div>
-          ${f.ao?`<div class="ao-tag">+ Add-on available</div>`:''}
-        </div></div>`;
-      f.v.forEach(v=>h+=`<div class="fcell">${renderVal(v)}</div>`);
-      h+=`</div>`;
+    VALUE_TIERS.forEach((tier,ti)=>{
+      h+=`<div class="tier-hd" style="background:${tier.bg};border-color:${tier.color}40">
+        <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
+        <div class="tier-hint">${tier.hint}</div>
+      </div>`;
+      tier.ids.forEach(id=>{
+        const f=fm.get(id);
+        if(f) h+=renderFeatureRow(f, bm);
+      });
     });
     wrap.innerHTML=h;
     return;
   }
 
-  // Original category view (compare + builder)
+  // ── COMPARE / BUILDER MODE ──
   let h='';
-  CATS.forEach(cat=>{
+  CATS.forEach((cat,ci)=>{
     const open=openC.has(cat.id);
-    h+=`<div class="cat-block">
-      <div class="cat-hd" onclick="toggleCat('${cat.id}')">
-        <div>
-          <div class="cat-title">${cat.icon} ${cat.name}</div>
-          <div class="cat-desc">${cat.desc}</div>
+    h+=`<div>
+      <div class="cat-hd${ci===0?' first':''}" onclick="toggleCat('${cat.id}')">
+        <div class="cat-left">
+          <div class="cat-icon" style="background:${cat.iconBg};color:${cat.iconC}">${cat.icon}</div>
+          <div>
+            <div class="cat-title">${cat.name}</div>
+            <div class="cat-desc">${cat.desc}</div>
+          </div>
         </div>
-        <div class="cat-right">
-          <span>${cat.features.length} capabilities</span>
+        <div class="cat-meta">
+          <span>${cat.features.length} items</span>
           <div class="cat-arr ${open?'open':''}">▼</div>
         </div>
       </div>
       <div id="cb_${cat.id}" style="${open?'':'display:none'}">`;
-    cat.features.forEach(f=>{
-      const sel=selF.has(f.id);
-      h+=`<div class="feat-row${bm?' bmode':''}${sel?' sel':''}" id="fr_${f.id}"${bm?` onclick="toggleF('${f.id}')"`:''}><div class="flabel">
-        <div class="fcb${sel?' on':''}" id="fcb_${f.id}">${sel?'✓':''}</div>
-        <div>
-          <div class="fname">${f.n}</div>
-          <div class="fsub">${f.s}</div>
-          ${f.ao?`<div class="ao-tag">+ Add-on available</div>`:''}
-        </div></div>`;
-      f.v.forEach(v=>h+=`<div class="fcell">${renderVal(v)}</div>`);
-      h+=`</div>`;
-    });
+    cat.features.forEach(f=>h+=renderFeatureRow(f,bm));
     h+=`</div></div>`;
   });
   wrap.innerHTML=h;
@@ -393,7 +407,7 @@ function renderFeatures(){
 
 function renderAddons(){
   const wrap=document.getElementById('addons');
-  let h=`<div class="ao-head"><h2>⚙️ Premium Add-Ons</h2><p>Extend any plan. ${mode==='builder'?'Check items to include them in your quote.':'Pricing shown per item per year unless noted.'}</p></div>`;
+  let h=`<div class="ao-head"><h2>⚙️ Premium Add-Ons</h2><p>Extend any plan. ${mode==='builder'?'Check items to include in your quote.':'Pricing per item per year unless noted.'}</p></div>`;
   ADDONS.forEach(c=>{
     h+=`<div class="ao-cat">${c.cat}</div>`;
     c.items.forEach(a=>{
@@ -410,8 +424,6 @@ function renderAddons(){
 
 function renderQuoteBar(){
   const bar=document.getElementById('qbar');
-  const info=document.getElementById('qinfo');
-  const tot=document.getElementById('qtotalWrap');
   if(mode!=='builder'||(selF.size===0&&selA.size===0)){bar.classList.remove('show');return}
   bar.classList.add('show');
   const rec=getRec();
@@ -420,7 +432,6 @@ function renderQuoteBar(){
   const base=plan?.p||0;
   const grand=base+aoT;
   const isCustom=rec===4;
-
   let ih='';
   if(plan){
     ih+=`<div class="qplan-tag" style="background:${C[rec]}">${plan.n}</div>`;
@@ -429,8 +440,8 @@ function renderQuoteBar(){
     if(plan.p){ih+=`<br>Base: ${fmt(plan.p)}`;if(aoT>0)ih+=` + Add-ons: ${fmt(aoT)}`}
     ih+=`</div>`;
   }
-  info.innerHTML=ih;
-  tot.innerHTML=isCustom
+  document.getElementById('qinfo').innerHTML=ih;
+  document.getElementById('qtotalWrap').innerHTML=isCustom
     ?`<div class="qtotal">Custom Quote<small>Contact our sales team</small></div>`
     :(grand?`<div class="qtotal">${fmt(grand)}<small>Estimated annual contract value</small></div>`:'');
 }
@@ -439,23 +450,26 @@ function renderAll(){renderPlans();renderFeatures();renderAddons();renderQuoteBa
 
 function setMode(m){
   mode=m;
-  document.getElementById('btnCmp').classList.toggle('active',m==='compare');
-  document.getElementById('btnBld').classList.toggle('active',m==='builder');
+  ['Cmp','Val','Bld'].forEach(k=>{
+    const el=document.getElementById('btn'+k);
+    if(el)el.classList.remove('active');
+  });
+  const map={compare:'Cmp',value:'Val',builder:'Bld'};
+  document.getElementById('btn'+map[m]).classList.add('active');
   document.getElementById('hint').classList.toggle('show',m==='builder');
-  document.getElementById('btnVal').classList.toggle('active',m==='value');
   renderAll();
 }
 
 function toggleCat(id){
-  if(openC.has(id))openC.delete(id);else openC.add(id);
-  const rows=document.getElementById(`cb_${id}`);
-  const arr=rows?.previousElementSibling?.querySelector('.cat-arr');
-  if(rows)rows.style.display=openC.has(id)?'':'none';
+  openC.has(id)?openC.delete(id):openC.add(id);
+  const body=document.getElementById(`cb_${id}`);
+  const arr=body?.previousElementSibling?.querySelector('.cat-arr');
+  if(body)body.style.display=openC.has(id)?'':'none';
   if(arr)arr.classList.toggle('open',openC.has(id));
 }
 
 function toggleF(id){
-  if(selF.has(id))selF.delete(id);else selF.add(id);
+  selF.has(id)?selF.delete(id):selF.add(id);
   const row=document.getElementById(`fr_${id}`);
   const cb=document.getElementById(`fcb_${id}`);
   const on=selF.has(id);
@@ -465,12 +479,11 @@ function toggleF(id){
 }
 
 function toggleA(id){
-  if(selA.has(id))selA.delete(id);else selA.add(id);
+  selA.has(id)?selA.delete(id):selA.add(id);
   renderAddons();renderQuoteBar();
 }
 
 function clearSel(){selF.clear();selA.clear();renderAll()}
-
 renderAll();
 </script>
 </body>
